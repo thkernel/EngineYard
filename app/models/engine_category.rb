@@ -1,0 +1,2 @@
+class EngineCategory < ApplicationRecord
+end

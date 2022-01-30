@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  invoice: one
+  engine: one
+  start_date: 2022-01-30 15:17:11
+  end_date: 2022-01-30 15:17:11
+  amount: 1.5
+
+two:
+  uid: MyString
+  invoice: two
+  engine: two
+  start_date: 2022-01-30 15:17:11
+  end_date: 2022-01-30 15:17:11
+  amount: 1.5

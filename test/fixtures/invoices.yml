@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  customer: one
+  booking: one
+  status: MyString
+  user: one
+
+two:
+  uid: MyString
+  customer: two
+  booking: two
+  status: MyString
+  user: two

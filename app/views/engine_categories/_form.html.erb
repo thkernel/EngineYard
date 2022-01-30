@@ -1,0 +1,22 @@
+<%= form_with(model: engine_category, local: true) do |form| %>
+  <% if engine_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(engine_category.errors.count, "error") %> prohibited this engine_category from being saved:</h2>
+
+      <ul>
+      <% engine_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.text_field :uid %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

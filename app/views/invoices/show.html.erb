@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @invoice.uid %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @invoice.customer %>
+</p>
+
+<p>
+  <strong>Booking:</strong>
+  <%= @invoice.booking %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @invoice.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @invoice.user %>
+</p>
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>

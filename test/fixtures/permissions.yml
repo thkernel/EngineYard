@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  feature: one
+  role: one
+  status: MyString
+
+two:
+  uid: MyString
+  feature: two
+  role: two
+  status: MyString

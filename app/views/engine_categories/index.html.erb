@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Engine Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @engine_categories.each do |engine_category| %>
+      <tr>
+        <td><%= engine_category.uid %></td>
+        <td><%= link_to 'Show', engine_category %></td>
+        <td><%= link_to 'Edit', edit_engine_category_path(engine_category) %></td>
+        <td><%= link_to 'Destroy', engine_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Engine Category', new_engine_category_path %>

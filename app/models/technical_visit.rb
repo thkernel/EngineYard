@@ -1,0 +1,2 @@
+class TechnicalVisit < ApplicationRecord
+end
