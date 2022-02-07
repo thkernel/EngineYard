@@ -1,22 +1,88 @@
-<%= form_with(model: engine, local: true) do |form| %>
-  <% if engine.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(engine.errors.count, "error") %> prohibited this engine from being saved:</h2>
+<%= form_with(model: engine, local: false) do |form| %>
+  
+<div class="modal-body">
+    <ul class="errors">
+    </ul>
+  
 
-      <ul>
-      <% engine.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :engine_category_id, "Type", class: "required" %>
+          <%= form.collection_select :engine_category_id, @engine_categories, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;",  required: true %> 
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :name, "Nom", class: "required" %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Nom", required: true %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :park_id, "Parc" , class: "required" %>
+          <%= form.collection_select :park_id, @parks, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;",  required: true %> 
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :brand, "Marque" %>
+          <%= form.text_field :brand, class: "form-control" , placeholder: "Marque" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :chassis_number, "Numéro de châssis" %>
+          <%= form.text_field :chassis_number, class: "form-control", placeholder: "Numéro de châssis" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :color, "Couleur" %>
+          <%= form.text_field :color, class: "form-control", placeholder: "Couleur" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :engine_model, "Modèle" %>
+          <%= form.text_field :engin_model, class: "form-control", placeholder: "Modèle" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :manufacture_year, "Année de fabrication" %>
+          <%= form.text_field :manufacture_year, class: "form-control", placeholder: "Année de fabrication" %>
+        </div>
+      </div>
+
+       <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :fuel_type, "Type de carburant" %>
+          <%= form.text_field :fuel_type, class: "form-control", placeholder: "Type de carburant" %>
+        </div>
+      </div>
+
+       <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :immatriculation_number, "Numéro d'immatriculation" %>
+          <%= form.text_field :immatriculation_number, class: "form-control", placeholder: "Numéro d'immatriculation" %>
+        </div>
+      </div>
+
+      
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :uid %>
-    <%= form.text_field :uid %>
-  </div>
+  
 
-  <div class="actions">
-    <%= form.submit %>
+ </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
   </div>
 <% end %>

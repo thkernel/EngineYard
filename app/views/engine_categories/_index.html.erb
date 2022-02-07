@@ -1,0 +1,18 @@
+<% @engine_categories.each do |engine_category| %>
+  <tr>
+    
+    <td><%= engine_category.name %></td>
+   <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_engine_category_path(engine_category), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), engine_category_delete_path(engine_category), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+  </tr>
+<% end %>

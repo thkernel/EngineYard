@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_30_151711) do
+ActiveRecord::Schema.define(version: 2022_02_06_113110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(version: 2022_01_30_151711) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "user_id"
+    t.string "browser"
+    t.string "ip_address"
+    t.string "controller"
+    t.string "action"
+    t.string "params"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_activity_logs_on_user_id"
   end
 
   create_table "booking_items", force: :cascade do |t|
@@ -256,6 +270,12 @@ ActiveRecord::Schema.define(version: 2022_01_30_151711) do
     t.index ["user_id"], name: "index_maintenances_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "odometers", force: :cascade do |t|
     t.string "uid"
     t.bigint "engine_id"
@@ -403,6 +423,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_151711) do
     t.string "uid"
     t.string "login"
     t.bigint "role_id", null: false
+    t.string "status"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -430,6 +451,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_151711) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activity_logs", "users"
   add_foreign_key "booking_items", "bookings"
   add_foreign_key "booking_items", "engines"
   add_foreign_key "bookings", "customers"

@@ -1,4 +1,8 @@
 class CustomersController < ApplicationController
+
+  before_action :authenticate_user!
+    layout "dashboard"
+    
   before_action :set_customer, only: %i[ show edit update destroy ]
 
   # GET /customers or /customers.json
@@ -25,7 +29,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
+        format.html { redirect_to @customer, notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +42,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
+        format.html { redirect_to @customer, notice: "Customer was successfully updated." }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +54,6 @@ class CustomersController < ApplicationController
   # DELETE /customers/1 or /customers/1.json
   def destroy
     @customer.destroy
-
     respond_to do |format|
       format.html { redirect_to customers_url, notice: "Customer was successfully destroyed." }
       format.json { head :no_content }
@@ -65,6 +68,6 @@ class CustomersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.require(:customer).permit(:uid)
+      params.require(:customer).permit(:uid, :customer_type, :company_name, :firt_name, :last_name, :civility, :address, :contry, :city, :locality, :phone, :email, :status, :description, :user_id)
     end
 end

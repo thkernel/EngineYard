@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Uid:</strong>
-  <%= @permission.uid %>
+  <strong>Role:</strong>
+  <%= @ability.role %>
+</p>
+
+<p>
+  <strong>Permission:</strong>
+  <%= @ability.permission %>
 </p>
 
 <p>
   <strong>Feature:</strong>
-  <%= @permission.feature %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @permission.role %>
+  <%= @ability.feature %>
 </p>
 
 <p>
   <strong>Status:</strong>
-  <%= @permission.status %>
+  <%= @ability.status %>
 </p>
 
-<%= link_to 'Edit', edit_permission_path(@permission) %> |
-<%= link_to 'Back', permissions_path %>
+<%= link_to 'Edit', edit_ability_path(@ability) %> |
+<%= link_to 'Back', abilities_path %>

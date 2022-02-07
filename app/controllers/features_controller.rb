@@ -1,58 +1,82 @@
 class FeaturesController < ApplicationController
-  before_action :set_feature, only: %i[ show edit update destroy ]
+  authorize_resource
+  
+  before_action :authenticate_user!
+  before_action :set_feature, only: [:show, :edit, :update, :destroy]
+  layout "dashboard"
 
-  # GET /features or /features.json
+
+  # GET /features
+  # GET /features.json
   def index
     @features = Feature.all
   end
 
-  # GET /features/1 or /features/1.json
+  # GET /features/1
+  # GET /features/1.json
   def show
   end
 
   # GET /features/new
   def new
+    Rails.application.eager_load!
+    @subject_classes = ApplicationRecord.descendants.map{ |type| [type.name] }
     @feature = Feature.new
   end
 
   # GET /features/1/edit
   def edit
+    Rails.application.eager_load!
+    @subject_classes = ApplicationRecord.descendants.map{ |type| [type.name] }
   end
 
-  # POST /features or /features.json
+  # POST /features
+  # POST /features.json
   def create
     @feature = Feature.new(feature_params)
 
     respond_to do |format|
       if @feature.save
-        format.html { redirect_to feature_url(@feature), notice: "Feature was successfully created." }
+        @features = Feature.all
+        format.html { redirect_to @feature, notice: 'Feature was successfully created.' }
         format.json { render :show, status: :created, location: @feature }
+        format.js
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new }
         format.json { render json: @feature.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
-  # PATCH/PUT /features/1 or /features/1.json
+  # PATCH/PUT /features/1
+  # PATCH/PUT /features/1.json
   def update
     respond_to do |format|
       if @feature.update(feature_params)
-        format.html { redirect_to feature_url(@feature), notice: "Feature was successfully updated." }
+        @features = Feature.all
+        format.html { redirect_to @feature, notice: 'Feature was successfully updated.' }
         format.json { render :show, status: :ok, location: @feature }
+        format.js
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
         format.json { render json: @feature.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
-  # DELETE /features/1 or /features/1.json
+
+  def delete
+    @feature = Feature.find_by(uid: params[:feature_id])
+  end
+
+  # DELETE /features/1
+  # DELETE /features/1.json
   def destroy
     @feature.destroy
-
     respond_to do |format|
-      format.html { redirect_to features_url, notice: "Feature was successfully destroyed." }
+      format.html { redirect_to features_url, notice: 'Feature was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -60,11 +84,11 @@ class FeaturesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_feature
-      @feature = Feature.find(params[:id])
+      @feature = Feature.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def feature_params
-      params.require(:feature).permit(:uid, :name, :subject_class, :description, :status)
+      params.require(:feature).permit(:uid, :name, :subject_class)
     end
 end

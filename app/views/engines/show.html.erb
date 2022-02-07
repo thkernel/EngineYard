@@ -2,8 +2,53 @@
 
 <p>
   <strong>Uid:</strong>
-  <%= @engine.uid %>
+  <%= @gear.uid %>
 </p>
 
-<%= link_to 'Edit', edit_engine_path(@engine) %> |
-<%= link_to 'Back', engines_path %>
+<p>
+  <strong>Slug:</strong>
+  <%= @gear.slug %>
+</p>
+
+<p>
+  <strong>Gear type:</strong>
+  <%= @gear.gear_type_id %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @gear.brand %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @gear.model %>
+</p>
+
+<p>
+  <strong>Manufacture year:</strong>
+  <%= @gear.manufacture_year %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @gear.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @gear.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @gear.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @gear.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_gear_path(@gear) %> |
+<%= link_to 'Back', gears_path %>

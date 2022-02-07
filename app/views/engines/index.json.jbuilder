@@ -1,1 +1,1 @@
-json.array! @engines, partial: "engines/engine", as: :engine
+json.array! @gears, partial: "gears/gear", as: :gear

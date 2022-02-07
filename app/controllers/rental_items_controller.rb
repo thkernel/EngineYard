@@ -25,7 +25,7 @@ class RentalItemsController < ApplicationController
 
     respond_to do |format|
       if @rental_item.save
-        format.html { redirect_to rental_item_url(@rental_item), notice: "Rental item was successfully created." }
+        format.html { redirect_to @rental_item, notice: "Rental item was successfully created." }
         format.json { render :show, status: :created, location: @rental_item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class RentalItemsController < ApplicationController
   def update
     respond_to do |format|
       if @rental_item.update(rental_item_params)
-        format.html { redirect_to rental_item_url(@rental_item), notice: "Rental item was successfully updated." }
+        format.html { redirect_to @rental_item, notice: "Rental item was successfully updated." }
         format.json { render :show, status: :ok, location: @rental_item }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +50,6 @@ class RentalItemsController < ApplicationController
   # DELETE /rental_items/1 or /rental_items/1.json
   def destroy
     @rental_item.destroy
-
     respond_to do |format|
       format.html { redirect_to rental_items_url, notice: "Rental item was successfully destroyed." }
       format.json { head :no_content }
@@ -65,6 +64,6 @@ class RentalItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rental_item_params
-      params.require(:rental_item).permit(:uid)
+      params.require(:rental_item).permit(:uid, :rental_id)
     end
 end

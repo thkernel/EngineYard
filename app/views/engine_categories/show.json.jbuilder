@@ -1,1 +1,1 @@
-json.partial! "engine_categories/engine_category", engine_category: @engine_category
+json.partial! "gear_types/gear_type", gear_type: @gear_type

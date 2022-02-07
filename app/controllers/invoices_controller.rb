@@ -25,7 +25,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully created." }
+        format.html { redirect_to @invoice, notice: "Invoice was successfully created." }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully updated." }
+        format.html { redirect_to @invoice, notice: "Invoice was successfully updated." }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +50,6 @@ class InvoicesController < ApplicationController
   # DELETE /invoices/1 or /invoices/1.json
   def destroy
     @invoice.destroy
-
     respond_to do |format|
       format.html { redirect_to invoices_url, notice: "Invoice was successfully destroyed." }
       format.json { head :no_content }
@@ -65,6 +64,6 @@ class InvoicesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invoice_params
-      params.require(:invoice).permit(:uid, :customer_id, :booking_id, :status, :user_id)
+      params.require(:invoice).permit(:uid, :user_id)
     end
 end

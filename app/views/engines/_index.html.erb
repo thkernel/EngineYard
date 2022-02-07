@@ -1,0 +1,23 @@
+<% @engines.each do |engine| %>
+      <tr>
+        
+        <td><%= engine.engine_category.name %></td>
+        <td><%= engine.name %></td>
+        <td><%= engine.brand %></td>
+        <td><%= engine.engine_model %></td>
+        <td><%= engine.manufacture_year %></td>
+       <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_engine_path(engine), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), engine_delete_path(engine), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+        
+      </tr>
+    <% end %>

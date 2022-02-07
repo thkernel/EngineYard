@@ -1,12 +1,14 @@
 class MaintenancesController < ApplicationController
-  before_action :set_maintenance, only: %i[ show edit update destroy ]
+  before_action :set_maintenance, only: [:show, :edit, :update, :destroy]
 
-  # GET /maintenances or /maintenances.json
+  # GET /maintenances
+  # GET /maintenances.json
   def index
     @maintenances = Maintenance.all
   end
 
-  # GET /maintenances/1 or /maintenances/1.json
+  # GET /maintenances/1
+  # GET /maintenances/1.json
   def show
   end
 
@@ -19,40 +21,42 @@ class MaintenancesController < ApplicationController
   def edit
   end
 
-  # POST /maintenances or /maintenances.json
+  # POST /maintenances
+  # POST /maintenances.json
   def create
     @maintenance = Maintenance.new(maintenance_params)
 
     respond_to do |format|
       if @maintenance.save
-        format.html { redirect_to maintenance_url(@maintenance), notice: "Maintenance was successfully created." }
+        format.html { redirect_to @maintenance, notice: 'Maintenance was successfully created.' }
         format.json { render :show, status: :created, location: @maintenance }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new }
         format.json { render json: @maintenance.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /maintenances/1 or /maintenances/1.json
+  # PATCH/PUT /maintenances/1
+  # PATCH/PUT /maintenances/1.json
   def update
     respond_to do |format|
       if @maintenance.update(maintenance_params)
-        format.html { redirect_to maintenance_url(@maintenance), notice: "Maintenance was successfully updated." }
+        format.html { redirect_to @maintenance, notice: 'Maintenance was successfully updated.' }
         format.json { render :show, status: :ok, location: @maintenance }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
         format.json { render json: @maintenance.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /maintenances/1 or /maintenances/1.json
+  # DELETE /maintenances/1
+  # DELETE /maintenances/1.json
   def destroy
     @maintenance.destroy
-
     respond_to do |format|
-      format.html { redirect_to maintenances_url, notice: "Maintenance was successfully destroyed." }
+      format.html { redirect_to maintenances_url, notice: 'Maintenance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +69,6 @@ class MaintenancesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def maintenance_params
-      params.require(:maintenance).permit(:uid)
+      params.require(:maintenance).permit(:maintenance_type_id, :uid, :fee, :service_provider, :status, :description, :user_id)
     end
 end

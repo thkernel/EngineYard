@@ -25,7 +25,7 @@ class InvoiceItemsController < ApplicationController
 
     respond_to do |format|
       if @invoice_item.save
-        format.html { redirect_to invoice_item_url(@invoice_item), notice: "Invoice item was successfully created." }
+        format.html { redirect_to @invoice_item, notice: "Invoice item was successfully created." }
         format.json { render :show, status: :created, location: @invoice_item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class InvoiceItemsController < ApplicationController
   def update
     respond_to do |format|
       if @invoice_item.update(invoice_item_params)
-        format.html { redirect_to invoice_item_url(@invoice_item), notice: "Invoice item was successfully updated." }
+        format.html { redirect_to @invoice_item, notice: "Invoice item was successfully updated." }
         format.json { render :show, status: :ok, location: @invoice_item }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +50,6 @@ class InvoiceItemsController < ApplicationController
   # DELETE /invoice_items/1 or /invoice_items/1.json
   def destroy
     @invoice_item.destroy
-
     respond_to do |format|
       format.html { redirect_to invoice_items_url, notice: "Invoice item was successfully destroyed." }
       format.json { head :no_content }
@@ -65,6 +64,6 @@ class InvoiceItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invoice_item_params
-      params.require(:invoice_item).permit(:uid, :invoice_id, :engine_id, :start_date, :end_date, :amount)
+      params.require(:invoice_item).permit(:uid, :invoice_id)
     end
 end

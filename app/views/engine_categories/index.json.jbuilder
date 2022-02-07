@@ -1,1 +1,1 @@
-json.array! @engine_categories, partial: "engine_categories/engine_category", as: :engine_category
+json.array! @gear_types, partial: "gear_types/gear_type", as: :gear_type

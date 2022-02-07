@@ -2,7 +2,7 @@ class CreateEngines < ActiveRecord::Migration[5.2]
   def change
     create_table :engines do |t|
       t.string :uid
-      t.references :engine_categorie,  foreign_key: true
+      t.references :engine_category,  foreign_key: true
       t.string :brand
       t.string :engine_model
       t.string :manufacture_year

@@ -1,12 +1,14 @@
 class InsurersController < ApplicationController
-  before_action :set_insurer, only: %i[ show edit update destroy ]
+  before_action :set_insurer, only: [:show, :edit, :update, :destroy]
 
-  # GET /insurers or /insurers.json
+  # GET /insurers
+  # GET /insurers.json
   def index
     @insurers = Insurer.all
   end
 
-  # GET /insurers/1 or /insurers/1.json
+  # GET /insurers/1
+  # GET /insurers/1.json
   def show
   end
 
@@ -19,40 +21,42 @@ class InsurersController < ApplicationController
   def edit
   end
 
-  # POST /insurers or /insurers.json
+  # POST /insurers
+  # POST /insurers.json
   def create
     @insurer = Insurer.new(insurer_params)
 
     respond_to do |format|
       if @insurer.save
-        format.html { redirect_to insurer_url(@insurer), notice: "Insurer was successfully created." }
+        format.html { redirect_to @insurer, notice: 'Insurer was successfully created.' }
         format.json { render :show, status: :created, location: @insurer }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new }
         format.json { render json: @insurer.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /insurers/1 or /insurers/1.json
+  # PATCH/PUT /insurers/1
+  # PATCH/PUT /insurers/1.json
   def update
     respond_to do |format|
       if @insurer.update(insurer_params)
-        format.html { redirect_to insurer_url(@insurer), notice: "Insurer was successfully updated." }
+        format.html { redirect_to @insurer, notice: 'Insurer was successfully updated.' }
         format.json { render :show, status: :ok, location: @insurer }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
         format.json { render json: @insurer.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /insurers/1 or /insurers/1.json
+  # DELETE /insurers/1
+  # DELETE /insurers/1.json
   def destroy
     @insurer.destroy
-
     respond_to do |format|
-      format.html { redirect_to insurers_url, notice: "Insurer was successfully destroyed." }
+      format.html { redirect_to insurers_url, notice: 'Insurer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +69,6 @@ class InsurersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def insurer_params
-      params.require(:insurer).permit(:uid)
+      params.require(:insurer).permit(:uid, :name, :address, :phone, :email, :country, :city, :status, :user_id)
     end
 end

@@ -1,0 +1,175 @@
+<!-- ########## START: LEFT PANEL ########## -->
+
+      <ul class="br-sideleft-menu">
+       <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-home tx-20"></i> <span class="menu-item-label">Tableau de bord</span>'), dashboard_path, class: "br-menu-link #{current? "active", dashboard_path}" %>
+        </li><!-- br-menu-item -->
+
+
+        <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-calendar-check-o tx-20"></i> <span class="menu-item-label">Reservations</span>'), bookings_path, class: "br-menu-link #{current? "active", bookings_path}" %>
+        </li><!-- br-menu-item -->
+
+        <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-ticket tx-20"></i> <span class="menu-item-label">Locations</span>'), rentals_path, class: "br-menu-link #{current? "active", rentals_path}" %>
+        </li><!-- br-menu-item -->
+
+        <li class="br-menu-item">
+          <%= link_to  raw('<i class="fa fa-table tx-20"></i> <span class="menu-item-label">Factures</span>'), invoices_path, class: "br-menu-link #{current? "active",  invoices_path}" %>
+        </li><!-- br-menu-item -->
+
+        
+
+         
+      
+        
+
+        
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-truck tx-20"></i>
+            <span class="menu-item-label">Engins</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            <li class="sub-item">
+                <%= link_to  "Catégories ", engine_categories_path, class: "sub-link #{current? "active", engine_categories_path}" %>
+            </li>
+
+            
+            <li class="sub-item">
+                <%= link_to  "Engins", engines_path, class: "sub-link #{current? "active", engines_path}" %>
+            </li>
+             
+          </ul>
+        </li>
+
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-wrench tx-20"></i>
+            <span class="menu-item-label">Maintenance</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            <li class="sub-item">
+                <%= link_to  "Catégories ", engine_categories_path, class: "sub-link #{current? "active", engine_categories_path}" %>
+            </li>
+
+            
+            <li class="sub-item">
+                <%= link_to  "Engins", engines_path, class: "sub-link #{current? "active", engines_path}" %>
+            </li>
+             
+          </ul>
+        </li>
+
+         
+
+
+        
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-users tx-20"></i>
+            <span class="menu-item-label">Tierces</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Clients", customers_path, class: "sub-link #{current? "active", customers_path}" %>
+            </li>
+             <li class="sub-item">
+                <%= link_to  "Fournisseurs",root_path, class: "sub-link #{current? "active", root_path}" %>
+            </li>
+
+           
+
+            
+          </ul>
+        </li>
+
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-newspaper-o tx-20"></i>
+            <span class="menu-item-label">Journaux</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            
+            <li class="sub-item">
+                <%= link_to  "Commandes", root_path, class: "sub-link #{current? "active", root_path}" %>
+            </li>
+             
+          </ul>
+        </li>
+        
+         
+
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-cog tx-20"></i>
+            <span class="menu-item-label">Paramètres</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+             
+           
+          
+            
+            <li class="sub-item">
+                <%= link_to  "Rôles", roles_path, class: "sub-link #{current? "active", roles_path}" %>
+            </li>
+
+             <li class="sub-item">
+                <%= link_to  "Droits d'accès", permissions_path, class: "sub-link #{current? "active", permissions_path}" %>
+            </li>
+
+            <li class="sub-item">
+                <%= link_to  "Utilisateurs", all_users_path, class: "sub-link #{current? "active", all_users_path}" %>
+            </li>
+
+            <li class="sub-item">
+                <%= link_to  "Parks", parks_path, class: "sub-link #{current? "active", parks_path}" %>
+            </li>
+
+           
+          
+
+
+          
+
+
+
+          </ul>
+        </li>
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fa fa-briefcase tx-20"></i>
+            <span class="menu-item-label">Utilitaires</span>
+          </a>
+          <ul class="br-menu-sub">
+            
+         
+        
+
+            <li class="sub-item">
+                <%= link_to  "Backup", show_backup_path,  data: { turbolinks: false }, class: "sub-link" %>
+            </li>
+
+            <li class="sub-item">
+                <%= link_to  "Logger", activity_logs_path, class: "sub-link #{current? "active", activity_logs_path}" %>
+            </li>
+
+
+            </ul>
+        </li>
+       
+      </ul><!-- br-sideleft-menu -->
+
+      
+       
+        
+      </div><!-- info-list -->
+
+    <!-- ########## END: LEFT PANEL ########## -->
