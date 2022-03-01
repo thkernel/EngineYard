@@ -86,6 +86,6 @@ class EnginesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def engine_params
-      params.require(:engine).permit(:engine_category_id, :brand, :engine_model, :manufacture_year, :park_id, :name, :chassis_number, :immatriculation_number, :color, :mileage, :fuel_type, :status)
+      params.require(:engine).permit(:engine_category_id, :brand, :engine_model, :manufacture_year, :park_id, :name, :chassis_number, :immatriculation_number, :color, :mileage, :fuel_type, :rental_price, :rental_time_unit, :status)
     end
 end

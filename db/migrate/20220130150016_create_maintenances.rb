@@ -2,7 +2,8 @@ class CreateMaintenances < ActiveRecord::Migration[5.2]
   def change
     create_table :maintenances do |t|
       t.string :uid
-      t.references :engine_category, foreign_key: true
+      t.date :maintenance_date
+      t.references :engine, foreign_key: true
       t.references :maintenance_type, foreign_key: true
       t.float :pre_tax_amount, default: 0.0
       t.float :vat_rate, default: 0.0

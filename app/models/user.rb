@@ -6,6 +6,7 @@
 #  uid                    :string
 #  login                  :string
 #  role_id                :bigint           not null
+#  status                 :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -48,6 +49,8 @@ class User < ApplicationRecord
   has_many :engine_categories, dependent: :destroy
   has_many :engines, dependent: :destroy
   has_many :parks, dependent: :destroy
+  has_many :maintenance_types, dependent: :destroy
+  has_many :maintenances, dependent: :destroy
 
   # Change default params ID to uid
   def to_param

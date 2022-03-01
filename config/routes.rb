@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     get "delete" 
   end
 
+  resources :providers do   
+    get "delete" 
+  end
+
   resources :drivers do   
     get "delete" 
   end

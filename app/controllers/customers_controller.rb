@@ -1,8 +1,9 @@
 class CustomersController < ApplicationController
-
+   #authorize_resource
+   load_and_authorize_resource :except => [:delete]
+   
   before_action :authenticate_user!
-    layout "dashboard"
-    
+  layout "dashboard"
   before_action :set_customer, only: %i[ show edit update destroy ]
 
   # GET /customers or /customers.json
@@ -25,15 +26,18 @@ class CustomersController < ApplicationController
 
   # POST /customers or /customers.json
   def create
-    @customer = Customer.new(customer_params)
+    @customer = current_account.customers.build(customer_params)
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: "Customer was successfully created." }
+        @customers = Customer.all
+        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,18 +46,27 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: "Customer was successfully updated." }
+        @customers = Customer.all
+
+        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
         format.json { render :show, status: :ok, location: @customer }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
+  def delete
+      @customer = Customer.find_by(uid: params[:customer_id])
+    end
+
   # DELETE /customers/1 or /customers/1.json
   def destroy
     @customer.destroy
+
     respond_to do |format|
       format.html { redirect_to customers_url, notice: "Customer was successfully destroyed." }
       format.json { head :no_content }
@@ -63,11 +76,11 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params[:id])
+      @customer = Customer.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.require(:customer).permit(:uid, :customer_type, :company_name, :firt_name, :last_name, :civility, :address, :contry, :city, :locality, :phone, :email, :status, :description, :user_id)
+      params.require(:customer).permit(:company_name, :first_name, :last_name, :civility, :address, :country, :city, :phone, :street, :email, :po_box, :zip_code, :description, :status)
     end
 end

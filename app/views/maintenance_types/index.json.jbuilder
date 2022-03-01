@@ -1,1 +1,1 @@
-json.array! @maintenance_types, partial: "maintenance_types/maintenance_type", as: :maintenance_type
+json.array! @gear_types, partial: "gear_types/gear_type", as: :gear_type

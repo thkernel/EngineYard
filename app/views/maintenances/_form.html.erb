@@ -1,22 +1,37 @@
-<%= form_with(model: maintenance, local: true) do |form| %>
-  <% if maintenance.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(maintenance.errors.count, "error") %> prohibited this maintenance from being saved:</h2>
+<%= form_with(model: maintenance, local: false) do |form| %>
+  
+  <div class="modal-body">
+    <ul class="errors">
+    </ul>
 
-      <ul>
-      <% maintenance.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="form-group">
+      <%= form.label :maintenance_type_id %>
+       <%= form.collection_select :maintenance_type_id, @maintenance_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;",  required: true %> 
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :uid %>
-    <%= form.text_field :uid %>
-  </div>
+  
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="form-group">
+      <%= form.label :fee, "Frais", class: "required" %>
+      <%= form.number_field :fee, class: "form-control",min: "1", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :service_provider, "Prestataire", class: "required" %>
+      <%= form.text_field :service_provider, class: "form-control", placeholder: "Prestataire", required: true %>
+    </div>
+
+  
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: "form-control", placeholder: "description" %>
+    </div>
+
+ 
+
+  </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit "Enregistrer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
   </div>
 <% end %>

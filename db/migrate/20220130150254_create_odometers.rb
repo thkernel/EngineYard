@@ -2,6 +2,7 @@ class CreateOdometers < ActiveRecord::Migration[5.2]
   def change
     create_table :odometers do |t|
       t.string :uid
+      t.date :odometer_date
       t.references :engine, foreign_key: true
       t.references :driver, foreign_key: true
       t.float :mileage, default: 0.0

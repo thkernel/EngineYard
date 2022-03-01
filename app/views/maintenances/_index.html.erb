@@ -1,0 +1,21 @@
+<% @maintenances.each do |maintenance| %>
+  <tr>
+    <td><%= maintenance.created_at %></td>
+    <td><%= maintenance.uid %></td>
+    <td><%= maintenance.maintenance_type.name %></td>
+    <td><%= maintenance.fee %></td>
+    <td><%= maintenance.service_provider %></td>
+     <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_maintenance_type_path(maintenance_type), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), maintenance_type_delete_path(maintenance_type), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+  </tr>
+<% end %>

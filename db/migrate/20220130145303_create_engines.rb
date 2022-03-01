@@ -15,6 +15,8 @@ class CreateEngines < ActiveRecord::Migration[5.2]
       t.datetime :circulation_date
       t.string :mileage
       t.string :fuel_type
+      t.float :rental_price, default: 0.0
+      t.string :rental_time_unit
       t.string :status
       t.text :description
       

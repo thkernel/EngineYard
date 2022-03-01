@@ -48,16 +48,16 @@
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub">
             <i class="fa fa-wrench tx-20"></i>
-            <span class="menu-item-label">Maintenance</span>
+            <span class="menu-item-label">Maintenances</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
             <li class="sub-item">
-                <%= link_to  "Catégories ", engine_categories_path, class: "sub-link #{current? "active", engine_categories_path}" %>
+                <%= link_to  "Types", maintenance_types_path, class: "sub-link #{current? "active", maintenance_types_path}" %>
             </li>
 
             
             <li class="sub-item">
-                <%= link_to  "Engins", engines_path, class: "sub-link #{current? "active", engines_path}" %>
+                <%= link_to  "Maintenances", maintenances_path, class: "sub-link #{current? "active", maintenances_path}" %>
             </li>
              
           </ul>
@@ -79,7 +79,7 @@
                 <%= link_to  "Clients", customers_path, class: "sub-link #{current? "active", customers_path}" %>
             </li>
              <li class="sub-item">
-                <%= link_to  "Fournisseurs",root_path, class: "sub-link #{current? "active", root_path}" %>
+                <%= link_to  "Fournisseurs", providers_path, class: "sub-link #{current? "active", providers_path}" %>
             </li>
 
            

@@ -1,0 +1,18 @@
+<% @maintenance_types.each do |maintenance_type| %>
+  <tr>
+    
+    <td><%= maintenance_type.name %></td>
+   <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_maintenance_type_path(maintenance_type), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), maintenance_type_delete_path(maintenance_type), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+  </tr>
+<% end %>

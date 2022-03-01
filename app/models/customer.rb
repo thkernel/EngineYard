@@ -5,7 +5,7 @@
 #  id           :bigint           not null, primary key
 #  uid          :string
 #  company_name :string
-#  firt_name    :string
+#  first_name    :string
 #  last_name    :string
 #  civility     :string
 #  address      :string

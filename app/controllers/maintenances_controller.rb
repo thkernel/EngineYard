@@ -1,5 +1,7 @@
 class MaintenancesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_maintenance, only: [:show, :edit, :update, :destroy]
+  layout "dashboard"
 
   # GET /maintenances
   # GET /maintenances.json
@@ -14,6 +16,7 @@ class MaintenancesController < ApplicationController
 
   # GET /maintenances/new
   def new
+    @maintenance_types = MaintenanceType.all
     @maintenance = Maintenance.new
   end
 
@@ -24,15 +27,19 @@ class MaintenancesController < ApplicationController
   # POST /maintenances
   # POST /maintenances.json
   def create
-    @maintenance = Maintenance.new(maintenance_params)
+    @maintenance = current_user.maintenances.build(maintenance_params)
 
     respond_to do |format|
       if @maintenance.save
+        @maintenances = Maintenance.all
+
         format.html { redirect_to @maintenance, notice: 'Maintenance was successfully created.' }
         format.json { render :show, status: :created, location: @maintenance }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @maintenance.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,13 +49,21 @@ class MaintenancesController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance.update(maintenance_params)
+        @maintenances = Maintenance.all
+
         format.html { redirect_to @maintenance, notice: 'Maintenance was successfully updated.' }
         format.json { render :show, status: :ok, location: @maintenance }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @maintenance.errors, status: :unprocessable_entity }
+        format.js
       end
     end
+  end
+
+  def delete
+    @maintenance = Maintenance.find_by(uid: params[:maintenance_id])
   end
 
   # DELETE /maintenances/1
@@ -64,11 +79,11 @@ class MaintenancesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance
-      @maintenance = Maintenance.find(params[:id])
+      @maintenance = Maintenance.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def maintenance_params
-      params.require(:maintenance).permit(:maintenance_type_id, :uid, :fee, :service_provider, :status, :description, :user_id)
+      params.require(:maintenance).permit(:maintenance_type_id, :uid, :fee, :service_provider,  :description)
     end
 end

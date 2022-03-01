@@ -1,1 +1,1 @@
-json.partial! "maintenance_types/maintenance_type", maintenance_type: @maintenance_type
+json.partial! "gear_types/gear_type", gear_type: @gear_type
